@@ -96,3 +96,25 @@ array.map((item, index, array)=>{
 
 })
 
+console.clear;
+
+// // Seleccionamos el contenedor de las tarjetas
+// const container = document.getElementById('cards');
+
+// // Obtenemos todas las tarjetas dentro del contenedor
+// const cards = Array.from(container.getElementsByClassName('card'));
+
+// // Invertimos el array de tarjetas
+// const reversedCards = cards.reverse();
+
+
+// // Volvemos a agregar las tarjetas al contenedor en el orden invertido
+// reversedCards.forEach(card => {
+//     container.appendChild(card); // Reapendemos cada tarjeta al contenedor
+// });
+
+
+for (let i = array.length -1 ; i >= 0; --i) {
+    const element = array[i];
+    
+}
