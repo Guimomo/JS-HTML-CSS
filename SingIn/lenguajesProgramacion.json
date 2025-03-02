@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "lenguaje": "Html"
+    },
+    {
+        "id": 2,
+        "lenguaje": "CSS"
+    },
+    {
+        "id": 3,
+        "lenguaje": "JavaScript"
+    },
+    {
+        "id": 4,
+        "lenguaje": "Java"
+    }
+]
