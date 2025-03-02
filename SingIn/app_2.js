@@ -56,6 +56,7 @@ const ciudades = async () => {
         const cityCombo = document.createElement('select');
         cityCombo.textContent = 'Seleccione una ciudad';
         cityCombo.id = 'citySelect';
+        cityCombo.name = 'ciudad_id';
 
         const defecto = document.createElement('option');
         defecto.textContent = 'Seleccione una ciudad';
@@ -65,7 +66,7 @@ const ciudades = async () => {
         
         ciudades.forEach(city => {
             const opcion = document.createElement('option');
-            opcion.value = city.nombre;
+            opcion.value = city.id;
             opcion.textContent = city.nombre;
 
             const clon = document.importNode(opcion, true);
