@@ -1,3 +1,7 @@
+import { generos } from './generos.js';
+import { Lenguajes } from './LP.js';
+import { ciudades } from './ciudades.js';
+
 const body = document.body;
 const formulario = document.querySelector('#formulario');
 const nombre = document.querySelector('#nombre');
@@ -43,58 +47,18 @@ nombre. addEventListener("keydown", keydown)
 
 //creación de terminos y condiciones
 
-const ciudades = async () => {
-    try {
-        const data = await fetch('data.json');
-        const ciudades = await data.json();
-        console.log(ciudades);
-
-        // const cityLabel = document.createElement('label');
-        // cityLabel.textContent = 'Seleccione una ciudad:';
-        // formulario.appendChild(cityLabel);
-
-        const cityCombo = document.createElement('select');
-        cityCombo.textContent = 'Seleccione una ciudad';
-        cityCombo.id = 'citySelect';
-        cityCombo.name = 'ciudad_id';
-
-        const defecto = document.createElement('option');
-        defecto.textContent = 'Seleccione una ciudad';
-        cityCombo.append(defecto);
-
-        const opciones = document.createDocumentFragment();
-        
-        ciudades.forEach(city => {
-            const opcion = document.createElement('option');
-            opcion.value = city.id;
-            opcion.textContent = city.nombre;
-
-            const clon = document.importNode(opcion, true);
-            opciones.append(clon);
-        });
-
-        cityCombo.append(opciones);
-
-        // const defaultOption = document.createElement('option');
-        // defaultOption.textContent = 'Seleccione una ciudad';
-        // defaultOption.value = '';  // Valor vacío
-        // defaultOption.disabled = true; // No se puede seleccionar
-        // defaultOption.selected = true; // Se muestra por defecto
-
-        
-        // formulario.appendChild(cityCombo);
-        
-        // apellido.insertAdjacentElement('afterend', cityCombo);
-        // apellido.insertAdjacentElement('afterend', cityLabel);
-
-        formulario.insertAdjacentElement('afterbegin', cityCombo);
-
-    } catch (error) {
-        console.error('Error:', error);
-    }
-};
+//-------------------------------------------------------------------CIUDAD
 
 ciudades();
+
+//-------------------------------------------------------------------GENERO
+
+generos(formulario);
+
+//-------------------------------------------------------------------LENGUAJES DE PROGRAMCIÓN
+
+Lenguajes(formulario);
+
 
 //----------------------------------------------------------TERMINOS Y CONDICIONES
 
@@ -133,123 +97,7 @@ formulario.append(terminosContent);
 
 contrasena.insertAdjacentElement('afterend', terminosContent);
 
-//-------------------------------------------------------------------GENERO
 
-const generoContent = document.createElement('div');
-generoContent.classList.add('LPOptions');
-
-const generoLabel = document.createElement('label');
-generoLabel.textContent = 'Selecciona un género:';
-generoLabel.classList.add('optionsLbl'); 
-
-generoContent.appendChild(generoLabel);
-
-const generos = async () => {
-
-    try {
-
-        const data = await fetch('generos.json');
-        const generos = await data.json();
-        console.log(generos);
-        
-        const opciones = document.createDocumentFragment();
-    
-        generos.forEach(genero => {
-            
-            const generoRadio = document.createElement('input');
-            generoRadio.type = 'radio';
-            generoRadio.id = genero.tipo;
-            generoRadio.name = 'genero';
-            generoRadio.value = genero.tipo;
-        
-            const label = document.createElement('label');
-            label.setAttribute('for', genero.tipo);
-            label.textContent = genero.tipo;
-        
-            const opcion = document.createElement('div');
-            // opcion.className = 'genderOp';
-            opcion.classList.add('genderOp');
-            
-            // Agregar radio y label correctamente
-            // opcion.appendChild(generoRadio);
-            // opcion.appendChild(label);
-            opcion.append(generoRadio, label);
-        
-            opciones.appendChild(opcion);
-        });
-    
-        generoContent.appendChild(opciones);
-    
-        formulario.append(generoContent);
-
-        apellido.insertAdjacentElement('afterend', generoContent);
-
-
-    } catch (error) {
-        console.error('Error al cargar los géneros:', error);
-    }
-
-}
-
-generos();
-
-//-------------------------------------------------------------------LENGUAJES DE PROGRAMCIÓN
-
-const LPContent = document.createElement('div');
-LPContent.classList.add('LPOptions');
-
-const LPLabel = document.createElement('label');
-LPLabel.textContent = 'Selecciona los lenguajes de programación de tu interes:';
-LPLabel.classList.add('optionsLbl'); 
-
-LPContent.appendChild(LPLabel);
-
-const Lenguajes = async () => {
-    
-    try {
-
-        const data = await fetch('lenguajesProgramacion.json');
-        const lenguajes = await data.json();
-        console.log(lenguajes);
-
-        const opciones = document.createDocumentFragment();
-
-        lenguajes.forEach(LP => {
-            
-            const LPCheck = document.createElement('input');
-            LPCheck.type = 'checkbox';
-            LPCheck.id = LP.lenguaje;
-            LPCheck.name = 'lenguaje';
-            LPCheck.value = LP.lenguaje;
-        
-            const label = document.createElement('label');
-            label.setAttribute('for', LP.lenguaje);
-            label.textContent = LP.lenguaje;
-        
-            const opcion = document.createElement('div');
-            // opcion.className = 'genderOp';
-            opcion.classList.add('LPOption');
-            
-            // Agregar radio y label correctamente
-            // opcion.appendChild(generoRadio);
-            // opcion.appendChild(label);
-            opcion.append(LPCheck, label);
-        
-            opciones.appendChild(opcion);
-        });
-
-        LPContent.appendChild(opciones);
-    
-        formulario.append(LPContent);
-
-        contrasena.insertAdjacentElement('afterend', LPContent);
-        
-    } catch (error) {
-        console.error('Error al cargar los lenguajes de programación:', error);
-    }
-}
-
-Lenguajes();
 
 //-------------------------------------------------------------------VALIDACIÓN
 const validar = (event) => {
