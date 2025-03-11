@@ -24,6 +24,7 @@ LPContent.appendChild(LPLabel);
             LPCheck.id = LP.lenguaje;
             LPCheck.name = 'lenguaje';
             LPCheck.value = LP.lenguaje;
+            //LPCheck.classList.add('lenguaje-checkbox');// se crea una clase para identificarlo de forma sencilla
         
             const label = document.createElement('label');
             label.setAttribute('for', LP.lenguaje);

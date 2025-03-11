@@ -15,6 +15,7 @@ export const ciudades = async () => {
 
         const defecto = document.createElement('option');
         defecto.textContent = 'Seleccione una ciudad';
+        defecto.value = ''; 
         cityCombo.append(defecto);
 
         const opciones = document.createDocumentFragment();
