@@ -103,7 +103,25 @@ formulario.append(terminosContent);
 
 contrasena.insertAdjacentElement('afterend', terminosContent);
 
+// Evitar que se ingresen letras en los campos numéricos
+const soloNumeros = (event) => {
+    if (!/^\d$/.test(event.key) && event.key !== "Backspace") {
+        event.preventDefault();
+    }
+};
 
+// Evitar que se ingresen números en los campos de texto
+const soloLetras = (event) => {
+    if (!/^[A-Za-záéíóúÁÉÍÓÚ\s]$/.test(event.key) && event.key !== "Backspace") {
+        event.preventDefault();
+    }
+};
+
+// Aplicar restricciones a los campos específicos
+document.querySelector("#telefono").addEventListener("keydown", soloNumeros);
+document.querySelector("#documento").addEventListener("keydown", soloNumeros);
+document.querySelector("#nombre").addEventListener("keydown", soloLetras);
+document.querySelector("#apellido").addEventListener("keydown", soloLetras);
 
 //-------------------------------------------------------------------VALIDACIÓN
 

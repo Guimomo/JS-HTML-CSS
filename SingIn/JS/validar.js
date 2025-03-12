@@ -1,4 +1,4 @@
-import Swal from '../node_modules/sweetalert2/dist/sweetalert2.esm.all.js'
+import Swal from '../../node_modules/sweetalert2/dist/sweetalert2.esm.all.js'
 
 export const validar = (event) => {
 
@@ -13,6 +13,7 @@ export const validar = (event) => {
     const numRegex = /^\d+$/;
     const usuarioRegex = /^[A-Za-z0-9_.]+$/; // Alfanumérico, guión bajo y punto
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordFuerte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{1,16}$/;
 
     //detenemos el evento
     event.preventDefault();
@@ -126,24 +127,57 @@ export const validar = (event) => {
         // alert('¡La contraseña es obligatoria!');
         contrasena.focus();
 
+    } else if (!passwordFuerte.test(contrasena.value)) {
+
+        let mensaje = "> La contraseña debe cumplir con los siguientes requisitos:\n";
+        mensaje += "- Al menos una letra mayúscula\n";
+        mensaje += "- Al menos una letra minúscula\n";
+        mensaje += "- Al menos un número\n";
+        mensaje += "- Al menos un carácter especial (@$!%*?&)\n";
+        mensaje += "- Entre 1 y 16 caracteres de longitud";
+    
+        campoInvalido(contrasena, mensaje);
+        // alert('¡La contraseña es obligatoria!');
+        contrasena.focus();
+
     } else if (ciudadSeleccionada === '') {  // Validación correcta
         campoInvalido(document.querySelector('.select'), '> Seleccione una ciudad.');
         
     } else if (lenguajesSeleccionados.length < 2) {
         // Nueva validación: verificar que haya al menos 2 lenguajes seleccionados
-        alert('> Debe seleccionar al menos 2 lenguajes de programación.');
-        
-    } else if (ciudadSeleccionada === '') {  // Validación correcta
-        alert('> Seleccione una ciudad.');
+        //alert('> Debe seleccionar al menos 2 lenguajes de programación.');
+        Swal.fire({
+            title: 'Error!',
+            text: '> Debe seleccionar al menos 2 lenguajes de programación.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
         
     } else if (generosSeleccionados.length === 0) {
         // Verificar que se haya seleccionado al menos un género
-        alert('> Debe seleccionar un género.');
+        //alert('> Debe seleccionar un género.');
+        Swal.fire({
+            title: 'Error!',
+            text: '> Debe seleccionar al menos un género.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
 
     } else {
         // Si todos los campos son válidos
-        alert('> Formulario validado correctamente.');
+        //alert('> Formulario validado correctamente.');
         // Aquí puedes enviar el formulario si es necesario
-        formulario.submit();
+        //formulario.submit();
+
+        Swal.fire({
+            title: 'Formulario validado!',
+            text: '> Todos los datos son correctos. Enviando formulario...',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        }).then((resultado) => {
+            if (resultado.isConfirmed) {
+                formulario.submit();
+            }
+        });
     }
 }

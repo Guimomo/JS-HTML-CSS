@@ -11,7 +11,7 @@ export const generos = async () => {
     
     try {
 
-        const data = await fetch('generos.json');
+        const data = await fetch('./JSON/generos.json');
         const generos = await data.json();
         console.log(generos);
         

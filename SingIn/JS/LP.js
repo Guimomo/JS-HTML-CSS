@@ -11,7 +11,7 @@ LPContent.appendChild(LPLabel);
 
     try {
 
-        const data = await fetch('lenguajesProgramacion.json');
+        const data = await fetch('./JSON/lenguajesProgramacion.json');
         const lenguajes = await data.json();
         console.log(lenguajes);
 

@@ -1,6 +1,6 @@
 export const ciudades = async () => {
     try {
-        const data = await fetch('data.json');
+        const data = await fetch('./JSON/data.json');
         const ciudades = await data.json();
         console.log(ciudades);
 
