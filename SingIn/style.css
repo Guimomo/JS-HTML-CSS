@@ -239,3 +239,7 @@ button:disabled {
   border: none;
   padding: 3px 10px;
 } */
+
+.invalid {
+  border:  3px solid rgb(173, 0, 0);
+}

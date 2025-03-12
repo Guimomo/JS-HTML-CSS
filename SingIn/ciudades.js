@@ -12,6 +12,7 @@ export const ciudades = async () => {
         cityCombo.textContent = 'Seleccione una ciudad';
         cityCombo.id = 'citySelect';
         cityCombo.name = 'ciudad_id';
+        cityCombo.classList.add('select');
 
         const defecto = document.createElement('option');
         defecto.textContent = 'Seleccione una ciudad';

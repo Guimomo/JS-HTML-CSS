@@ -143,8 +143,8 @@ section {
   color: var(--heavyMetal);
 }
 
-.button__text {
-}
+/* .button__text {
+} */
 
 .button__icon {
   font-size: 1.4rem;

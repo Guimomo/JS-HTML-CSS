@@ -108,4 +108,4 @@ contrasena.insertAdjacentElement('afterend', terminosContent);
 //-------------------------------------------------------------------VALIDACIÓN
 
 //btnValidar.addEventListener('click', validar);
-formulario. addEventListener("submit", validar)
+formulario.addEventListener("submit", validar)

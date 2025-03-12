@@ -1,4 +1,13 @@
+import Swal from '../node_modules/sweetalert2/dist/sweetalert2.esm.all.js'
+
 export const validar = (event) => {
+
+    // Swal.fire({
+    //     title: 'Error!',
+    //     text: 'Do you want to continue',
+    //     icon: 'error',
+    //     confirmButtonText: 'Cool'
+    // })
 
     const abcRegex = /^[A-Za-záéíóúÁÉÍÓÚ\s]+$/;
     const numRegex = /^\d+$/;
@@ -8,7 +17,34 @@ export const validar = (event) => {
     //detenemos el evento
     event.preventDefault();
 
-    const ciudadSeleccionada = document.getElementById("citySelect").value;
+    const campoInvalido = (campo, mensaje) =>{
+
+        // campo.setCustomValidity(mensaje);
+        // campo.reportValidity();
+        //alert(mensaje);
+        campo.classList.add('invalid');
+
+        Swal.fire({
+            title: 'Error!',
+            text: mensaje,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+
+    const limpiarCampoInvalido = () =>{
+        // document.querySelectorAll('.invalid').forEach(eliminarError => eliminarError.classList.remove('invalid'))
+        document.querySelectorAll('.invalid').forEach(eliminarError =>{
+            eliminarError.classList.remove('invalid');
+            //eliminarError.setCustomValidity('');
+        });
+    }
+
+    limpiarCampoInvalido();
+
+    //const ciudadSeleccionada = document.getElementById("citySelect").value;
+
+    const ciudadSeleccionada = document.querySelector('.select').value;
     
     // Verificar el número de lenguajes seleccionados
     const lenguajesSeleccionados = document.querySelectorAll('input[name="lenguaje"]:checked');
@@ -20,84 +56,93 @@ export const validar = (event) => {
     //validamos los datos
     if (nombre.value == '') {
         
-        alert('¡El nombre es obligatorio!');
+        campoInvalido (nombre, '> El nombre es obligatorio.');
+        // alert('¡El nombre es obligatorio!');
         nombre.focus();
 
     } else if (!abcRegex.test(nombre.value)) {
          // Verificar si el nombre solo contiene letras y espacios
-        alert('¡El nombre solo debe contener letras y espacios!');
+        campoInvalido (nombre, '> El nombre solo debe contener letras y espacios.');
+        // alert('¡El nombre solo debe contener letras y espacios!');
         nombre.focus();
 
     } else if (apellido.value == "" ) {
         
-        alert('¡El apellido es obligatorio!');
+        campoInvalido (apellido, '> El apellido es obligatorio.');
+        // alert('¡El apellido es obligatorio!');
         apellido.focus();
 
     } else if (!abcRegex.test(apellido.value)) {
         // Verificar si el nombre solo contiene letras y espacios
-       alert('¡El apellido solo debe contener letras y espacios!');
-       nombre.focus();
+       campoInvalido (apellido, '> El apellido solo debe contener letras y espacios.');
+       //alert('¡El apellido solo debe contener letras y espacios!');
+        nombre.focus();
+
+    } else if (correo.value === '') {
+        campoInvalido(correo, '> Ingrese una dirección de correo.');
+
+    } else if (!emailRegex.test(correo.value)) {
+        campoInvalido(correo, '> Ingrese una dirección de correo.');
 
     } else if (telefono.value == "") {
 
-        alert('¡El telefono es obligatorio!');
+        campoInvalido (telefono, '> El telefono es obligatorio.');
+        // alert('¡El telefono es obligatorio!');
         telefono.focus();
 
     } else if (!numRegex.test(telefono.value)) {
 
-        alert("¡El teléfono debe contener solo números!");
+        campoInvalido (telefono, '> El teléfono debe contener solo números.');
+        // alert("¡El teléfono debe contener solo números!");
         telefono.focus();
 
     } else if (documento.value == '') {
 
-        alert('¡El documento es obligatorio!');
+        campoInvalido(documento, '> El documento es obligatorio.');
+        // alert('¡El documento es obligatorio!');
         documento.focus();
 
     } else if (!numRegex.test(documento.value)) {
          // Verificar si el documento solo contiene números
-        alert('¡El documento debe contener solo números!');
+        campoInvalido(documento, '> El documento debe contener solo números.');
+        // alert('¡El documento debe contener solo números!');
         documento.focus();
 
     } else if (usuario.value == '') {
 
-        alert('¡El usuario es obligatorio!');
+        campoInvalido(usuario, '> El usuario es obligatorio.');
+        // alert('¡El usuario es obligatorio!');
         usuario.focus();
+
     } else if (!usuarioRegex.test(usuario.value)) {
          // Verificar si el usuario solo contiene letras, números o guiones bajos
-        alert('¡El usuario solo debe contener letras, números o guiones bajos!');
+        campoInvalido(usuario, '> El usuario solo debe contener letras, números o guiones bajos.');
+        // alert('¡El usuario solo debe contener letras, números o guiones bajos!');
         usuario.focus();
 
     } else if (contrasena.value == '') {
 
-        alert('¡La contraseña es obligatoria!');
+        campoInvalido(contrasena, '> La contraseña es obligatoria.');
+        // alert('¡La contraseña es obligatoria!');
         contrasena.focus();
 
     } else if (ciudadSeleccionada === '') {  // Validación correcta
-        alert('¡Seleccione una ciudad!');
-        
+        campoInvalido(document.querySelector('.select'), '> Seleccione una ciudad.');
         
     } else if (lenguajesSeleccionados.length < 2) {
         // Nueva validación: verificar que haya al menos 2 lenguajes seleccionados
-        alert('¡Debe seleccionar al menos 2 lenguajes de programación!');
+        alert('> Debe seleccionar al menos 2 lenguajes de programación.');
         
     } else if (ciudadSeleccionada === '') {  // Validación correcta
-        alert('¡Seleccione una ciudad!');
+        alert('> Seleccione una ciudad.');
         
     } else if (generosSeleccionados.length === 0) {
         // Verificar que se haya seleccionado al menos un género
-        alert('¡Debe seleccionar un género!');
-
-    } else if (correo.value === '') {
-        alert('¡Ingrese una dirección correo!');
-        correo.focus();
-
-    } else if (!emailRegex.test(correo.value)) {
-        alert('¡Ingrese un correo electrónico válido!');
-        correo.focus();
+        alert('> Debe seleccionar un género.');
 
     } else {
         // Si todos los campos son válidos
-        alert('¡Formulario validado correctamente!');
+        alert('> Formulario validado correctamente.');
         // Aquí puedes enviar el formulario si es necesario
         formulario.submit();
     }
