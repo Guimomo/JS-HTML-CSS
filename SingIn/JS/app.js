@@ -105,7 +105,7 @@ contrasena.insertAdjacentElement('afterend', terminosContent);
 
 // Evitar que se ingresen letras en los campos numéricos
 const soloNumeros = (event) => {
-    if (!/^\d$/.test(event.key) && event.key !== "Backspace") {
+    if (!/^[0-9]/.test(event.key) && event.key !== "Backspace") {
         event.preventDefault();
     }
 };
@@ -116,6 +116,8 @@ const soloLetras = (event) => {
         event.preventDefault();
     }
 };
+
+
 
 // Aplicar restricciones a los campos específicos
 document.querySelector("#telefono").addEventListener("keydown", soloNumeros);
